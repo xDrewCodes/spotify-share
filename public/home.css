@@ -77,3 +77,7 @@ nav {
 .loginButton {
     display: block;
 }
+
+.mainLogin {
+    align-items: center;
+}
