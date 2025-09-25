@@ -7,6 +7,14 @@
     <title>Music Share</title>
 </head>
 
+<script>
+    if localStorage.getItem('loggedIn') {
+        document.getElementById('mainLogin').style.display = 'none'
+    } else {
+        document.getElementById('mainPage').style.display = 'none'
+    }
+</script>
+
 <body>
     <div id="mainLogin">
         <h1>Music Share</h1>
