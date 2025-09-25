@@ -3,7 +3,6 @@ const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 const redirect_uri = process.env.SPOTIFY_REDIRECT_URI;
 
 export default async function handler(req, res) {
-  prompt('callback hit')
   const code = req.query.code || null;
   const state = req.query.state || null;
 

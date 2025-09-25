@@ -1,8 +1,6 @@
 // api/login.js
 const querystring = require('querystring');
 
-prompt('login hit')
-
 const client_id = process.env.SPOTIFY_CLIENT_ID;
 const redirect_uri = process.env.SPOTIFY_REDIRECT_URI;
 
