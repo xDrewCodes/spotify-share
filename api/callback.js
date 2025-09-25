@@ -38,7 +38,7 @@ export default async function handler(req, res) {
     const { access_token, refresh_token } = data;
 
     console.log('Tokens:', { access_token, refresh_token });
-
+    res.sendFile('public/login-success.html');
     // ✅ Redirect to a frontend page that handles localStorage
     return res.redirect('/login-success.html'); // Or your desired page
   } catch (error) {
