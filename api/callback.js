@@ -37,8 +37,7 @@ export default async function handler(req, res) {
     const { access_token, refresh_token } = data;
 
     console.log('Tokens:', { access_token, refresh_token });
-    // ✅ Redirect to a frontend page that handles localStorage
-    return res.redirect('/login-success.html'); // Or your desired page
+    return res.redirect('/login-success.html');
   } catch (error) {
     console.error('Unexpected error:', error);
     return res.status(500).json({ error: 'Internal Server Error' });
