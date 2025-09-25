@@ -54,8 +54,6 @@ nav {
     left: 0;
     right: 0;
     height: 50x;
-    display: flex;
-    align-items: space-between;
     padding: 24px auto;
 }
 
