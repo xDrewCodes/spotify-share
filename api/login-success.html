@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Logging in...</title>
+</head>
+<body style="background: #111; color: white; text-align: center; padding-top: 5rem;">
+  <h2>Finishing login...</h2>
+
+  <script>
+    // ✅ Set loggedIn in browser
+    localStorage.setItem('loggedIn', 'true');
+
+    // ✅ Optional: store other info from query string if you passed it (e.g. tokens)
+
+    // ✅ Redirect back to homepage
+    setTimeout(() => {
+      window.location.href = '/';
+    }, 1000); // short delay just for UX
+  </script>
+</body>
+</html>
