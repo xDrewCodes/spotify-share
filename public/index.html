@@ -23,6 +23,9 @@
         if (localStorage.getItem('loggedIn')) {
             document.getElementById('mainLogin').style.display = 'none'
             document.getElementById('mainPage').style.display = 'block'
+        } else {
+            document.getElementById('mainLogin').style.display = 'block'
+            document.getElementById('mainPage').style.display = 'none'
         }
     }
 
