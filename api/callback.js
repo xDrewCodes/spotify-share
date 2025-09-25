@@ -3,8 +3,10 @@ const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 const redirect_uri = process.env.SPOTIFY_REDIRECT_URI;
 
 export default async function handler(req, res) {
+  console.log('callback func')
   const code = req.query.code || null;
   const state = req.query.state || null;
+
 
   if (!state || !code) {
     return res.status(400).send('Missing code or state');
