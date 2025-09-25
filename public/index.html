@@ -8,6 +8,15 @@
 </head>
 
 <script>
+
+    function logIn() {
+        localStorage.setItem('loggedIn', true)
+    }
+
+    function logOut() {
+        localStorage.setItem('loggedIn', false)
+    }
+
     if (localStorage.getItem('loggedIn')) {
         document.getElementById('mainLogin').style.display = 'none'
         document.getElementById('mainPage').style.display = 'block'
@@ -18,13 +27,19 @@
     <div id="mainLogin">
         <h1>Music Share</h1>
         <a class="button" href="/api/login">Authorize your Spotify account</a>
-        <button class="button secondary-button">Log In</button>
+        <button
+        class="button secondary-button"
+        onClick="logIn(); location.reload();"
+        >Log In</button>
     </div>
     <div id="mainPage" style='display: none;'>
         <nav>
             <a href="">Music Share</a>
             <div class="searchBar"></div>
-            <div class="pfp"></div>
+            <div
+            class="pfp"
+            onClick="logOut(); location.reload();"
+            ></div>
         </nav>
         <div class="users">
             <div class="userCard">
