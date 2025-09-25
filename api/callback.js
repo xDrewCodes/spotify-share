@@ -1,3 +1,7 @@
+const client_id = process.env.SPOTIFY_CLIENT_ID;
+const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
+const redirect_uri = process.env.SPOTIFY_REDIRECT_URI;
+
 export default async function handler(req, res) {
   const code = req.query.code || null;
   const state = req.query.state || null;
@@ -31,17 +35,13 @@ export default async function handler(req, res) {
     const data = await response.json();
     const { access_token, refresh_token } = data;
 
-    console.log('Spotify tokens:', { access_token, refresh_token });
+    console.log('Tokens:', { access_token, refresh_token });
 
     localStorage.setItem('loggedIn', true)
 
-    res.writeHead(302, {
-      Location: '/',
-    });
-    res.end();
-
+    return res.redirect('/');
   } catch (error) {
     console.error('Unexpected error:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
 }
