@@ -1,5 +1,6 @@
 // api/login.js
-import { stringify } from 'querystring';
+const querystring = require('querystring');
+
 
 const client_id = process.env.SPOTIFY_CLIENT_ID;
 const redirect_uri = process.env.SPOTIFY_REDIRECT_URI;
@@ -17,7 +18,7 @@ export default function handler(req, res) {
   const state = generateRandomString(16);
   const scope = 'user-read-private user-read-email';
 
-  const query = stringify({
+  const query = querystring.stringify({
     response_type: 'code',
     client_id,
     scope,

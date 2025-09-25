@@ -1,5 +1,6 @@
 // api/callback.js
-import axios from 'axios';
+const axios = require('axios');
+
 
 const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
