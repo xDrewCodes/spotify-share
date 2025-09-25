@@ -20,10 +20,10 @@
     }
 
     function checkLoginState() {
-        if (localStorage.getItem('loggedIn')) {
+        if (localStorage.getItem('loggedIn') == 'true') {
             document.getElementById('mainLogin').style.display = 'none'
             document.getElementById('mainPage').style.display = 'block'
-        } else {
+        } else if (localStorage.getItem('loggedIn') == 'false') {
             document.getElementById('mainLogin').style.display = 'block'
             document.getElementById('mainPage').style.display = 'none'
         }
@@ -46,7 +46,7 @@
             <div class="pfp" onClick="logOut();"></div>
         </nav>
         <div class="users">
-            <div class="userCard">
+            <div onClick="logOut();" class="userCard">
                 test
             </div>
         </div>
