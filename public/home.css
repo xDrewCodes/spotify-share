@@ -78,6 +78,6 @@ nav {
     display: block;
 }
 
-.mainLogin {
+#mainLogin {
     align-items: center;
 }
