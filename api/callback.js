@@ -1,7 +1,3 @@
-// api/callback.js
-const axios = require('axios');
-
-
 const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 const redirect_uri = process.env.SPOTIFY_REDIRECT_URI;
@@ -15,28 +11,33 @@ export default async function handler(req, res) {
   }
 
   try {
-    const tokenResponse = await axios.post(
-      'https://accounts.spotify.com/api/token',
-      new URLSearchParams({
+    const authHeader = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
+
+    const response = await fetch('https://accounts.spotify.com/api/token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': `Basic ${authHeader}`
+      },
+      body: new URLSearchParams({
         grant_type: 'authorization_code',
         code: code,
-        redirect_uri: redirect_uri,
-      }),
-      {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          Authorization:
-            'Basic ' +
-            Buffer.from(client_id + ':' + client_secret).toString('base64'),
-        },
-      }
-    );
+        redirect_uri: redirect_uri
+      }).toString()
+    });
 
-    const { access_token, refresh_token } = tokenResponse.data;
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Spotify token exchange failed:', errorData);
+      return res.status(500).json({ error: 'Token exchange failed', details: errorData });
+    }
+
+    const data = await response.json();
+    const { access_token, refresh_token } = data;
 
     res.status(200).json({ access_token, refresh_token });
-  } catch (err) {
-    console.error(err.response?.data || err.message);
-    res.status(500).send('Failed to exchange token');
+  } catch (error) {
+    console.error('Unexpected error:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 }
