@@ -52,10 +52,10 @@ nav {
     background: #121212;
     top: 0;
     left: 0;
-    right: 0;
+    width: 100%;
     height: 50x;
     padding: 24px auto;
-    display: inline-block;
+    display: inline;
 }
 
 .searchBar {
