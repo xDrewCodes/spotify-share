@@ -13,7 +13,7 @@ body {
 
 h1 {
     font-size: 3rem;
-    margin-bottom: 0.25rem;
+    margin: 0.25rem 0;
 }
 
 .button {
@@ -36,12 +36,12 @@ h1 {
     scale: 1.03;
 }
 
-.secondary-button {
+.loginSecondaryButton {
     color: white;
     background-color: #333;
 }
 
-.secondary-button:hover {
+.loginSecondaryButton:hover {
     scale: 1.03;
     transform: translateY(-2px);
     background-color: #444;
@@ -76,12 +76,11 @@ nav {
 
 .loginButton {
     display: block;
+    margin-top: 12px;
 }
 
 #mainLogin {
-    align-items: center;
-    flex-direction: column;
-    display: flex;
+    text-align: center;
 }
 
 .QRContainer {
