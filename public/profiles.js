@@ -20,5 +20,11 @@ const profiles = [
     picture: "https://i.pravatar.cc/150?img=45",
     song: "Levitating",
     songCover: "https://via.placeholder.com/100x100.png?text=Album+3"
+  },
+  {
+    name: "Diddy Combs",
+    picture: "https://i.pravatar.cc/150?img=67",
+    song: "Baby Oil",
+    songCover: "https://via.placeholder.com/100x100.png?text=Album+3"
   }
 ];
