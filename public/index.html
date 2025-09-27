@@ -39,13 +39,11 @@
     const accessToken = getQueryParam('access_token');
 
     if (loggedIn || accessToken) {
-        localStorage.setItem('loggedIn', 'true');
+        logIn();
 
         if (accessToken) {
             localStorage.setItem('access_token', accessToken);
         }
-
-        checkLoginState();
 
         window.history.replaceState({}, document.title, '/');
     } F
