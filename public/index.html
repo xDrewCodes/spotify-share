@@ -22,14 +22,14 @@
     </nav>
 </header>
 
-  <!-- Page Heading -->
+<!-- Page Heading -->
 <section class="mainPage page-heading">
-  <h1>Welcome To Sharify</h1>
-  <p>Here's some suggestions!</p>
+    <h1>Welcome To Sharify</h1>
+    <p>Here's some suggestions!</p>
 </section>
 
 
-  <body>
+<body>
     <div class="mainLogin">
         <h1>Sharify</h1>
         <a class="button loginButton" href="/api/login">Authorize your Spotify account</a>
@@ -48,9 +48,9 @@
         </div>
     </div>
 </body>
-  
-  <!-- Profile Grid -->
-  <main class="mainPage profile-grid" id="profileGrid">
+
+<!-- Profile Grid -->
+<main class="mainPage profile-grid" id="profileGrid">
 
     <!-- Profiles will be generated dynamically by JS -->
 </main>
@@ -58,6 +58,64 @@
 <script src="profiles.js"></script> <!-- include profiles.js -->
 
 <script>
+
+    function logIn() {
+        localStorage.setItem('loggedIn', true)
+        checkLoginState()
+    }
+
+    function logOut() {
+        localStorage.removeItem('access_token');
+        localStorage.setItem('loggedIn', 'false');
+        checkLoginState();
+    }
+
+
+    function checkLoginState() {
+        const loggedIn = localStorage.getItem('loggedIn') === 'true';
+
+        const mainLoginEls = document.getElementsByClassName('mainLogin');
+        const mainPageEls = document.getElementsByClassName('mainPage');
+
+        if (loggedIn) {
+            // Hide login, show main page
+            for (let el of mainLoginEls) {
+                el.style.display = 'none';
+            }
+            for (let el of mainPageEls) {
+                el.style.display = 'block';
+            }
+        } else {
+            // Show login, hide main page
+            for (let el of mainLoginEls) {
+                el.style.display = 'block';
+            }
+            for (let el of mainPageEls) {
+                el.style.display = 'none';
+            }
+        }
+    }
+
+
+    window.onload = checkLoginState;
+
+    function getQueryParam(key) {
+        return new URLSearchParams(window.location.search).get(key);
+    }
+
+    const loggedIn = getQueryParam('loggedIn');
+    const accessToken = getQueryParam('access_token');
+
+    if (loggedIn || accessToken) {
+        logIn();
+
+        if (accessToken) {
+            localStorage.setItem('access_token', accessToken);
+        }
+
+        window.history.replaceState({}, document.title, '/');
+    }
+
     // ===== DYNAMIC PROFILES =====
     const grid = document.getElementById("profileGrid");
 
@@ -83,45 +141,6 @@
 
         grid.appendChild(card);
     });
-
-    function logIn() {
-        localStorage.setItem('loggedIn', true)
-        checkLoginState()
-    }
-
-    function logOut() {
-        localStorage.setItem('loggedIn', false)
-        checkLoginState()
-    }
-
-    function checkLoginState() {
-        if (localStorage.getItem('loggedIn') == 'true') {
-            document.getElementsByClassName('mainLogin').style.visibility = 'hidden'
-            document.getElementsByClassName('mainPage').style.visibility = 'shown'
-        } else if (localStorage.getItem('loggedIn') == 'false') {
-            document.getElementsByClassName('mainLogin').style.visibility = 'hidden'
-            document.getElementsByClassName('mainPage').style.visibility = 'shown'
-        }
-    }
-
-    window.onload = checkLoginState;
-
-    function getQueryParam(key) {
-        return new URLSearchParams(window.location.search).get(key);
-    }
-
-    const loggedIn = getQueryParam('loggedIn');
-    const accessToken = getQueryParam('access_token');
-
-    if (loggedIn || accessToken) {
-        logIn();
-
-        if (accessToken) {
-            localStorage.setItem('access_token', accessToken);
-        }
-
-        window.history.replaceState({}, document.title, '/');
-    }
 
 </script>
 
