@@ -18,7 +18,7 @@ body {
 
 h1 {
     font-size: 3rem;
-    margin-bottom: 1rem;
+    margin: 0.25rem 0;
 }
 
 a {
@@ -140,12 +140,12 @@ a {
     scale: 1.03;
 }
 
-.secondary-button {
+.loginSecondaryButton {
     color: white;
     background-color: #333;
 }
 
-.secondary-button:hover {
+.loginSecondaryButton:hover {
     scale: 1.03;
     transform: translateY(-2px);
     background-color: #444;
@@ -247,3 +247,25 @@ a {
     font-style: italic;
     font-size: 0.8rem;
 }
+
+.loginButton {
+    display: block;
+    margin-top: 12px;
+}
+
+#mainLogin {
+    text-align: center;
+}
+
+.QRContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.QRCode {
+    width: 200px;
+    height: 200px;
+}
+

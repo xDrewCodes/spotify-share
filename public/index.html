@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <link rel="stylesheet" href="/home.css">
     <meta charset="UTF-8">
@@ -30,6 +29,26 @@
 </section>
 
 
+  <body>
+    <div id="mainLogin">
+        <h1>Sharify</h1>
+        <a class="button loginButton" href="/api/login">Authorize your Spotify account</a>
+        <a class="button loginButton loginSecondaryButton" onClick="logIn()">Log In</a>
+    </div>
+    <div id="mainPage" style='display: none;'>
+        <nav>
+            <a href="">Sharify</a>
+            <div class="searchBar"></div>
+            <div class="pfp" onClick="logOut();"></div>
+        </nav>
+        <div class="users">
+            <div onClick="logOut();" class="userCard">
+                test
+            </div>
+        </div>
+    </div>
+</body>
+  
   <!-- Profile Grid -->
   <main class="profile-grid" id="profileGrid">
 
@@ -64,8 +83,46 @@
 
         grid.appendChild(card);
     });
-</script>
 
-</body>
+    function logIn() {
+        localStorage.setItem('loggedIn', true)
+        checkLoginState()
+    }
+
+    function logOut() {
+        localStorage.setItem('loggedIn', false)
+        checkLoginState()
+    }
+
+    function checkLoginState() {
+        if (localStorage.getItem('loggedIn') == 'true') {
+            document.getElementById('mainLogin').style.display = 'none'
+            document.getElementById('mainPage').style.display = 'block'
+        } else if (localStorage.getItem('loggedIn') == 'false') {
+            document.getElementById('mainLogin').style.display = 'block'
+            document.getElementById('mainPage').style.display = 'none'
+        }
+    }
+
+    window.onload = checkLoginState;
+
+    function getQueryParam(key) {
+        return new URLSearchParams(window.location.search).get(key);
+    }
+
+    const loggedIn = getQueryParam('loggedIn');
+    const accessToken = getQueryParam('access_token');
+
+    if (loggedIn || accessToken) {
+        logIn();
+
+        if (accessToken) {
+            localStorage.setItem('access_token', accessToken);
+        }
+
+        window.history.replaceState({}, document.title, '/');
+    }
+
+</script>
 
 </html>

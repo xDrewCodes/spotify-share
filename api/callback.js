@@ -6,6 +6,7 @@ export default async function handler(req, res) {
   const code = req.query.code || null;
   const state = req.query.state || null;
 
+
   if (!state || !code) {
     return res.status(400).send('Missing code or state');
   }
@@ -35,9 +36,10 @@ export default async function handler(req, res) {
     const data = await response.json();
     const { access_token, refresh_token } = data;
 
-    res.status(200).json({ access_token, refresh_token });
+    console.log('Tokens:', { access_token, refresh_token });
+    return res.redirect('/?loggedIn=true');
   } catch (error) {
     console.error('Unexpected error:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
 }
