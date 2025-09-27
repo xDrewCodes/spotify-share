@@ -96,11 +96,11 @@
 
     function checkLoginState() {
         if (localStorage.getItem('loggedIn') == 'true') {
-            document.getElementsByClassName('mainLogin').style.display = 'none'
-            document.getElementsByClassName('mainPage').style.display = 'block'
+            document.getElementsByClassName('mainLogin').style.visibility = 'hidden'
+            document.getElementsByClassName('mainPage').style.visibility = 'shown'
         } else if (localStorage.getItem('loggedIn') == 'false') {
-            document.getElementsByClassName('mainLogin').style.display = 'block'
-            document.getElementsByClassName('mainPage').style.display = 'none'
+            document.getElementsByClassName('mainLogin').style.visibility = 'hidden'
+            document.getElementsByClassName('mainPage').style.visibility = 'shown'
         }
     }
 
