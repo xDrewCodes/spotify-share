@@ -35,18 +35,6 @@
         <a class="button loginButton" href="/api/login">Authorize your Spotify account</a>
         <a class="button loginButton loginSecondaryButton" onClick="logIn()">Log In</a>
     </div>
-    <div class="mainPage" style='display: none;'>
-        <nav>
-            <a href="">Sharify</a>
-            <div class="searchBar"></div>
-            <div class="pfp" onClick="logOut();"></div>
-        </nav>
-        <div class="users">
-            <div onClick="logOut();" class="userCard">
-                test
-            </div>
-        </div>
-    </div>
 </body>
 
 <!-- Profile Grid -->
@@ -80,18 +68,18 @@
         if (loggedIn) {
             // Hide login, show main page
             for (let el of mainLoginEls) {
-                el.style.display = 'none';
+                el.style.visibility = 'hidden';
             }
             for (let el of mainPageEls) {
-                el.style.display = 'block';
+                el.style.visibility = 'shown';
             }
         } else {
             // Show login, hide main page
             for (let el of mainLoginEls) {
-                el.style.display = 'block';
+                el.style.visibility = 'shown';
             }
             for (let el of mainPageEls) {
-                el.style.display = 'none';
+                el.style.visibility = 'hidden';
             }
         }
     }
