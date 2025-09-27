@@ -118,10 +118,6 @@ a {
 
 /* LOGIN PAGE */
 
-.mainPage {
-    visibility: hidden;
-}
-
 .button {
     padding: 1rem 2rem;
     margin: 0.5rem;
@@ -257,7 +253,6 @@ a {
 
 .mainLogin {
     text-align: center;
-    visibility: visible;
 }
 
 .QRContainer {
