@@ -69,7 +69,7 @@
     }
 
 
-    window.onload = checkLoginState;
+    window.onload = checkLoginState();
 
     function getQueryParam(key) {
         return new URLSearchParams(window.location.search).get(key);
