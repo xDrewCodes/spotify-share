@@ -7,8 +7,6 @@
     <title>Sharify</title>
 </head>
 
-<body></body>
-
 <script src="profiles.js"></script> <!-- include profiles.js -->
 
 <script>
@@ -29,8 +27,8 @@
         const loggedIn = localStorage.getItem('loggedIn') === 'true';
 
         if (loggedIn) {
-            document.getElementsByTagName('body')[0].innerHTML = `
-            
+            document.getElementsByTagName('html')[0].innerHTML = `
+
             <!-- Navigation Bar -->
             <header class="navbar mainPage" id="navbar">
                 <div class="logo">Sharify</div>
@@ -46,23 +44,26 @@
                 </nav>
             </header>
 
-            <section class="mainPage page-heading">
-                <h1>Welcome To Sharify</h1>
-                <p>Here's some suggestions!</p>
-            </section>
-
-            <main class="mainPage profile-grid" id="profileGrid"></main>
+            <body>
+                <section class="mainPage page-heading">
+                    <h1>Welcome To Sharify</h1>
+                    <p>Here's some suggestions!</p>
+                </section>
+                <main class="mainPage profile-grid" id="profileGrid"></main>
+            </body>
 
             `
 
         } else {
-            document.getElementsByTagName('body')[0].innerHTML = `
-            
-            <div class="mainLogin">
-                <h1>Sharify</h1>
-                <a class="button loginButton" href="/api/login">Authorize your Spotify account</a>
-                <a class="button loginButton loginSecondaryButton" onClick="logIn()">Log In</a>
-            </div>
+            document.getElementsByTagName('html')[0].innerHTML = `
+
+            <body>
+                <div class="mainLogin">
+                    <h1>Sharify</h1>
+                    <a class="button loginButton" href="/api/login">Authorize your Spotify account</a>
+                    <a class="button loginButton loginSecondaryButton" onClick="logIn()">Log In</a>
+                </div>
+            </body>
 
             `
         }
