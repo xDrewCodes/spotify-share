@@ -8,7 +8,7 @@
 </head>
 
 <!-- Navigation Bar -->
-<header class="navbar" id="navbar">
+<header class="navbar mainPage" id="navbar">
     <div class="logo">Sharify</div>
     <input type="text" class="search-bar" placeholder="Search here">
     <nav class="nav-buttons">
@@ -23,19 +23,19 @@
 </header>
 
   <!-- Page Heading -->
-<section class="page-heading">
+<section class="mainPage page-heading">
   <h1>Welcome To Sharify</h1>
   <p>Here's some suggestions!</p>
 </section>
 
 
   <body>
-    <div id="mainLogin">
+    <div class="mainLogin">
         <h1>Sharify</h1>
         <a class="button loginButton" href="/api/login">Authorize your Spotify account</a>
         <a class="button loginButton loginSecondaryButton" onClick="logIn()">Log In</a>
     </div>
-    <div id="mainPage" style='display: none;'>
+    <div class="mainPage" style='display: none;'>
         <nav>
             <a href="">Sharify</a>
             <div class="searchBar"></div>
@@ -50,7 +50,7 @@
 </body>
   
   <!-- Profile Grid -->
-  <main class="profile-grid" id="profileGrid">
+  <main class="mainPage profile-grid" id="profileGrid">
 
     <!-- Profiles will be generated dynamically by JS -->
 </main>
@@ -96,11 +96,11 @@
 
     function checkLoginState() {
         if (localStorage.getItem('loggedIn') == 'true') {
-            document.getElementById('mainLogin').style.display = 'none'
-            document.getElementById('mainPage').style.display = 'block'
+            document.getElementsByClassName('mainLogin').style.display = 'none'
+            document.getElementsByClassName('mainPage').style.display = 'block'
         } else if (localStorage.getItem('loggedIn') == 'false') {
-            document.getElementById('mainLogin').style.display = 'block'
-            document.getElementById('mainPage').style.display = 'none'
+            document.getElementsByClassName('mainLogin').style.display = 'block'
+            document.getElementsByClassName('mainPage').style.display = 'none'
         }
     }
 
