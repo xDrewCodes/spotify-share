@@ -1,14 +1,18 @@
+
+/* GENERICS */
+
 * {
     box-sizing: border-box;
 }
 
 body {
-    margin: calc( 70px + 48px ) 48px;
+    margin: calc(70px + 48px) 48px;
     background: linear-gradient(to bottom, #232723, black);
     color: #e1ece3;
     font-family: Arial, sans-serif;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     height: 100vh;
 }
 
@@ -17,49 +21,12 @@ h1 {
     margin-bottom: 1rem;
 }
 
-.button {
-    padding: 1rem 2rem;
-    margin: 0.5rem;
-    font-size: 1.2rem;
-    color: black;
-    background-color: #1db954;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+a {
     text-decoration: none;
-    transition: all 0.2s ease;
 }
 
-.button:hover {
-    transform: translateY(-2px);
-    background-color: #1ed760;
-    scale: 1.03;
-}
 
-.secondary-button {
-    color: white;
-    background-color: #333;
-}
-
-.secondary-button:hover {
-    scale: 1.03;
-    transform: translateY(-2px);
-    background-color: #444;
-}
-
-.pfp {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    transform: translateY(3px);
-    transition: all 0.2s ease;;
-}
-
-.pfp:hover {
-    cursor: pointer;
-    scale: 1.1;
-}
+/* NAVBAR */
 
 .navbar {
     width: 100%;
@@ -74,6 +41,22 @@ h1 {
     backdrop-filter: blur(6px);
     z-index: 1000;
 }
+
+.pfp {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    transform: translateY(3px);
+    transition: all 0.2s ease;
+    ;
+}
+
+.pfp:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+
 
 .logo {
     font-size: 1.2rem;
@@ -134,8 +117,66 @@ h1 {
     color: #232723;
 }
 
+
+/* LOGIN PAGE */
+
+.button {
+    padding: 1rem 2rem;
+    margin: 0.5rem;
+    font-size: 1.2rem;
+    color: black;
+    background-color: #1db954;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    background-color: #1ed760;
+    scale: 1.03;
+}
+
+.secondary-button {
+    color: white;
+    background-color: #333;
+}
+
+.secondary-button:hover {
+    scale: 1.03;
+    transform: translateY(-2px);
+    background-color: #444;
+}
+
+
+/* PAGE HEADER */
+
+.page-heading {
+    text-align: center;
+    margin-top: 20px;
+    color: #e1ece3;
+}
+
+.page-heading h1 {
+    font-size: 3rem;
+    margin-bottom: 5px;
+    color: #62d089;
+}
+
+.page-heading p {
+    font-size: 2rem;
+    color: #a8b2a8;
+}
+
+
+/* CARDS SECTION */
+
 .profile-grid {
-    max-width: 1500px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
 .profile-card {
@@ -155,7 +196,6 @@ h1 {
 
 .profile-card:hover {
     background: #414141;
-    width: 300px;
 }
 
 .profile-header {

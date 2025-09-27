@@ -87,17 +87,14 @@ const profiles = [
     name: "Chloe Brown",
     picture: "https://i.pravatar.cc/150?img=45",
     song: "Levitating",
-<<<<<<< HEAD
     artist: "Dua Lipa",
     songCover: "https://upload.wikimedia.org/wikipedia/en/f/f5/Dua_Lipa_-_Future_Nostalgia_%28Official_Album_Cover%29.png"
-=======
-    songCover: "https://via.placeholder.com/100x100.png?text=Album+3"
   },
   {
     name: "Diddy Combs",
     picture: "https://i.pravatar.cc/150?img=67",
     song: "Baby Oil",
+    artist: "Sean",
     songCover: "https://via.placeholder.com/100x100.png?text=Album+3"
->>>>>>> c2e2a65bbb2ca9a1ad45797b53e93215cb722b19
   }
 ];
