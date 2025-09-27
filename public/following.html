@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <link rel="stylesheet" href="/home.css">
+    <meta charset="UTF-8">
+    <title>Sharify</title>
+</head>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <nav class="nav-buttons">
+        <a href="index.html" class="logo">Sharify</a>
+    </nav>
+    <input type="text" class="search-bar" placeholder="Search here">
+    <nav class="nav-buttons">
+      <a href="index.html" class="nav-btn">Home</a>
+      <a href="friends.html" class="nav-btn">Friends</a>
+      <a href="#" class="nav-btn sign-out">Sign Out</a>
+    </nav>
+  </header>
+  <!-- Page Heading -->
+<section class="page-heading">
+  <h1>Following</h1>
+  <p>Checkout who you're following, and what they're listening to!</p>
+</section>
+
+
+  <!-- Profile Grid -->
+  <main class="profile-grid" id="profileGrid">
+    <!-- Profiles will be generated dynamically by JS -->
+  </main>
+
+  <script src="profiles.js"></script> <!-- include profiles.js -->
+
+<script>
+  // ===== DYNAMIC PROFILES =====
+  const grid = document.getElementById("profileGrid");
+
+  profiles.forEach(profile => {
+    const card = document.createElement("div");
+    card.className = "profile-card";
+
+    card.innerHTML = `
+      <div class="profile-header">
+        <img src="${profile.picture}" alt="${profile.name}" class="profile-pic">
+        <span class="profile-name">${profile.name}</span>
+      </div>
+      <div class="song-section">
+        <img src="${profile.songCover}" alt="${profile.song}" class="song-cover">
+        <span class="song-title">${profile.song}</span>
+      </div>
+    `;
+
+    grid.appendChild(card);
+  });
+</script>
+
+</body>
+
+
+
+
+</html>

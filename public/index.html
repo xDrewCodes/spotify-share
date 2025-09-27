@@ -4,10 +4,85 @@
 <head>
     <link rel="stylesheet" href="/home.css">
     <meta charset="UTF-8">
-    <title>Music Share</title>
+    <title>Sharify</title>
 </head>
 
+<!-- Navigation Bar -->
+<header class="navbar" id="navbar">
+    <div class="logo">Sharify</div>
+    <input type="text" class="search-bar" placeholder="Search here">
+    <nav class="nav-buttons">
+        <a href="friends.html" class="nav-btn">Friends</a>
+        <a href="following.html" class="nav-btn">Following</a>
+        <a href="#" class="nav-btn sign-out">Sign Out</a>
+        <a href="#">
+            <img src="https://images.unsplash.com/photo-1487017931017-0e0d9e02bb0c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                class="pfp">
+        </a>
+    </nav>
+</header>
+
+  <!-- Page Heading -->
+<section class="page-heading">
+  <h1>Welcome To Sharify</h1>
+  <p>Here's some suggestions!</p>
+</section>
+
+
+  <body>
+    <div id="mainLogin">
+        <h1>Sharify</h1>
+        <a class="button loginButton" href="/api/login">Authorize your Spotify account</a>
+        <a class="button loginButton loginSecondaryButton" onClick="logIn()">Log In</a>
+    </div>
+    <div id="mainPage" style='display: none;'>
+        <nav>
+            <a href="">Sharify</a>
+            <div class="searchBar"></div>
+            <div class="pfp" onClick="logOut();"></div>
+        </nav>
+        <div class="users">
+            <div onClick="logOut();" class="userCard">
+                test
+            </div>
+        </div>
+    </div>
+</body>
+  
+  <!-- Profile Grid -->
+  <main class="profile-grid" id="profileGrid">
+
+    <!-- Profiles will be generated dynamically by JS -->
+</main>
+
+<script src="profiles.js"></script> <!-- include profiles.js -->
+
 <script>
+    // ===== DYNAMIC PROFILES =====
+    const grid = document.getElementById("profileGrid");
+
+    profiles.forEach(profile => {
+        const card = document.createElement("div");
+        card.className = "profile-card";
+
+        card.innerHTML = `
+        <div class="usersContainer">
+      <div class="profile-header">
+        <img src="${profile.picture}" alt="${profile.name}" class="profile-pic">
+        <span class="profile-name">${profile.name}</span>
+      </div>
+      <div class="song-section">
+        <img src="${profile.songCover}" class="song-cover">
+        <div class="songInfoContainer">
+            <span class="song-title">${profile.song}</span>
+            <span class="song-artist">${profile.artist}</span>
+        </div>
+      </div>
+      </div>
+    `;
+
+        grid.appendChild(card);
+    });
 
     function logIn() {
         localStorage.setItem('loggedIn', true)
@@ -46,28 +121,8 @@
         }
 
         window.history.replaceState({}, document.title, '/');
-    } F
+    }
 
 </script>
-
-<body>
-    <div id="mainLogin">
-        <h1>Music Share</h1>
-        <a class="button loginButton" href="/api/login">Authorize your Spotify account</a>
-        <a class="button loginButton loginSecondaryButton" onClick="logIn()">Log In</a>
-    </div>
-    <div id="mainPage" style='display: none;'>
-        <nav>
-            <a href="">Music Share</a>
-            <div class="searchBar"></div>
-            <div class="pfp" onClick="logOut();"></div>
-        </nav>
-        <div class="users">
-            <div onClick="logOut();" class="userCard">
-                test
-            </div>
-        </div>
-    </div>
-</body>
 
 </html>
