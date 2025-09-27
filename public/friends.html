@@ -1,66 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
-    <link rel="stylesheet" href="/home.css">
-    <meta charset="UTF-8">
-    <title>Sharify</title>
+  <link rel="stylesheet" href="/home.css">
+  <meta charset="UTF-8">
+  <title>Sharify</title>
 </head>
 
+<body>
   <!-- Navigation Bar -->
   <header class="navbar" id="navbar">
     <nav class="nav-buttons">
-        <a href="index.html" class="logo">Sharify</a>
+      <a href="index.html" class="logo">Sharify</a>
     </nav>
     <input type="text" class="search-bar" placeholder="Search here">
     <nav class="nav-buttons">
       <a href="index.html" class="nav-btn">Home</a>
       <a href="following.html" class="nav-btn">Following</a>
       <a href="#" class="nav-btn sign-out">Sign Out</a>
+      <a href="profile.html">
+        <img src="https://images.unsplash.com/photo-1487017931017-0e0d9e02bb0c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            class="pfp">
+      </a>
     </nav>
   </header>
-  
-  <!-- Page Heading -->
-<section class="page-heading">
-  <h1>Friends</h1>
-  <p>See what your friends are listening to in real-time</p>
-</section>
 
+  <!-- Friend Requests Dropdown -->
+  <div class="friend-requests-container">
+    <button class="friend-requests-btn" id="toggleRequests">Friend Requests ⬇</button>
+    <div class="friend-requests-content hidden" id="friendRequests">
+      <!-- Incoming Requests -->
+      <div class="requests-section">
+        <h3>Incoming</h3>
+      </div>
+
+      <!-- Outgoing Requests -->
+      <div class="requests-section">
+        <h3>Outgoing</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Heading -->
+  <section class="page-heading">
+    <h1>Friends</h1>
+    <p>See what your friends are listening to in real-time</p>
+  </section>
+
+  <!-- Friend Search -->
+  <div class="friend-search">
+    <input type="text" class="search-bar" placeholder="Search for friends...">
+    <button class="nav-btn">Send Request</button>
+  </div>
 
   <!-- Profile Grid -->
   <main class="profile-grid" id="profileGrid" style="visibility: hidden">
     <!-- Profiles will be generated dynamically by JS -->
   </main>
 
-  <script src="profiles.js"></script> <!-- include profiles.js -->
+  <script src="profiles.js"></script>
 
-<script>
-  // ===== DYNAMIC PROFILES =====
-  const grid = document.getElementById("profileGrid");
+  <script>
+    // ===== DYNAMIC PROFILES =====
+    const grid = document.getElementById("profileGrid");
 
-  profiles.forEach(profile => {
-    const card = document.createElement("div");
-    card.className = "profile-card";
+    profiles.forEach(profile => {
+      const card = document.createElement("div");
+      card.className = "profile-card";
 
-    card.innerHTML = `
-      <div class="profile-header">
-        <img src="${profile.picture}" alt="${profile.name}" class="profile-pic">
-        <span class="profile-name">${profile.name}</span>
-      </div>
-      <div class="song-section">
-        <img src="${profile.songCover}" alt="${profile.song}" class="song-cover">
-        <span class="song-title">${profile.song}</span>
-      </div>
-    `;
+      card.innerHTML = `
+        <div class="profile-header">
+          <img src="${profile.picture}" alt="${profile.name}" class="profile-pic">
+          <span class="profile-name">${profile.name}</span>
+        </div>
+        <div class="song-section">
+          <img src="${profile.songCover}" alt="${profile.song}" class="song-cover">
+          <span class="song-title">${profile.song}</span>
+        </div>
+      `;
 
-    grid.appendChild(card);
-  });
-</script>
+      grid.appendChild(card);
+    });
 
+    // ===== DYNAMIC FRIEND REQUESTS =====
+    const friendRequestsEl = document.getElementById("friendRequests");
+    const incomingSection = friendRequestsEl.querySelectorAll(".requests-section")[0];
+    const outgoingSection = friendRequestsEl.querySelectorAll(".requests-section")[1];
+
+    const incomingRequests = [
+      { name: "Alice", picture: "https://via.placeholder.com/32" },
+      { name: "Bob", picture: "https://via.placeholder.com/32" }
+    ];
+
+    const outgoingRequests = [
+      { name: "Charlie", picture: "https://via.placeholder.com/32" }
+    ];
+
+    incomingRequests.forEach(req => {
+      const card = document.createElement("div");
+      card.className = "request-card";
+      card.innerHTML = `
+        <div class="request-info">
+          <img src="${req.picture}" alt="${req.name}" class="request-pic">
+          <span class="request-name">${req.name}</span>
+        </div>
+        <div class="request-buttons">
+          <button class="accept-btn">Accept</button>
+          <button class="deny-btn">Deny</button>
+        </div>
+      `;
+      incomingSection.appendChild(card);
+    });
+
+    outgoingRequests.forEach(req => {
+      const card = document.createElement("div");
+      card.className = "request-card";
+      card.innerHTML = `
+        <div class="request-info">
+          <img src="${req.picture}" alt="${req.name}" class="request-pic">
+          <span class="request-name">${req.name}</span>
+        </div>
+        <div class="request-buttons">
+          <button class="unsend-btn">Unsend</button>
+        </div>
+      `;
+      outgoingSection.appendChild(card);
+    });
+
+    // ===== TOGGLE DROPDOWN =====
+    const toggleBtn = document.getElementById("toggleRequests");
+    toggleBtn.addEventListener("click", () => {
+      friendRequestsEl.classList.toggle("hidden");
+    });
+  </script>
 </body>
-
-
-
 
 </html>

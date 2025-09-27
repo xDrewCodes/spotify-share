@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="/home.css">
+  <meta charset="UTF-8">
+  <title>Sharify - Profile</title>
+</head>
+
+<!-- Navigation Bar -->
+<header class="navbar" id="navbar">
+  <nav class="nav-buttons">
+    <a href="index.html" class="logo">Sharify</a>
+  </nav>
+  <input type="text" class="search-bar" placeholder="Search here">
+  <nav class="nav-buttons">
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="friends.html" class="nav-btn">Friends</a>
+    <a href="following.html" class="nav-btn">Following</a>
+    <a href="#" class="nav-btn sign-out" onclick="logOut()">Sign Out</a>
+  </nav>
+</header>
+
+<!-- Page Heading -->
+<section class="page-heading">
+  <h1>Your Profile</h1>
+  <p>Manage your account and privacy settings</p>
+</section>
+
+<!-- Profile Section -->
+<main class="profile-container">
+  <div class="profile-header-large">
+    <img src="https://via.placeholder.com/150" class="profile-pic-large" alt="Profile Picture">
+    <h1 class="profile-username">User Name</h1>
+  </div>
+
+  <!-- Settings -->
+  <div class="settings-container">
+    <h2>Privacy & Sharing Settings</h2>
+
+    <div class="setting-item">
+      <label>Display Songs Publicly</label>
+      <select>
+        <option>Everyone</option>
+        <option>Friends</option>
+        <option>Following</option>
+        <option>Friends & Following</option>
+        <option>Only Me</option>
+      </select>
+    </div>
+
+    <div class="setting-item">
+      <label>Allow Others to Join Listening</label>
+      <select>
+        <option>Everyone</option>
+        <option>Friends</option>
+        <option>Following</option>
+        <option>Friends & Following</option>
+        <option>Only Me</option>
+      </select>
+    </div>
+
+    <div class="setting-item">
+      <label>Allow Others to Join Jam</label>
+      <select>
+        <option>Everyone</option>
+        <option>Friends</option>
+        <option>Following</option>
+        <option>Friends & Following</option>
+        <option>Only Me</option>
+      </select>
+    </div>
+  </div>
+</main>
+
+<script>
+  function logOut() {
+    localStorage.removeItem('access_token');
+    localStorage.setItem('loggedIn', 'false');
+    window.location.href = "index.html";
+  }
+</script>
+
+</body>
+</html>
