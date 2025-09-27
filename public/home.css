@@ -1,13 +1,14 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #1e1e1e;
-    color: white;
+    margin: calc( 70px + 48px ) 48px;
+    background: linear-gradient(to bottom, #232723, black);
+    color: #e1ece3;
     font-family: Arial, sans-serif;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
     height: 100vh;
 }
 
@@ -45,4 +46,164 @@ h1 {
     scale: 1.03;
     transform: translateY(-2px);
     background-color: #444;
+}
+
+.pfp {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    transform: translateY(3px);
+    transition: all 0.2s ease;;
+}
+
+.pfp:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: top 0.3s;
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #62d089;
+    cursor: pointer;
+}
+
+.search-bar {
+    flex: 1;
+    padding: 0 20px;
+    height: 35px;
+    border-radius: 500px;
+    border: none;
+    background: #2f2f2f;
+    color: #232723;
+    max-width: 400px;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar:focus {
+    outline: none;
+    background-color: #3f3f3f;
+}
+
+.search-bar::placeholder {
+    color: white;
+    font-weight: 100;
+    letter-spacing: 0.5px;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+.nav-btn {
+    text-decoration: none;
+    padding: 8px 20px;
+    background: #457e59;
+    color: #e1ece3;
+    border-radius: 2px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    line-height: 24px;
+}
+
+.nav-btn:hover {
+    transform: scale(1.05);
+}
+
+.sign-out {
+    background: #a8b2a8;
+    color: #232723;
+}
+
+.sign-out:hover {
+    background: #e1ece3;
+    color: #232723;
+}
+
+.profile-grid {
+    max-width: 1500px;
+}
+
+.profile-card {
+    background: #2f2f2f;
+    border-radius: 4px;
+    height: 150px;
+    width: 250px;
+    padding: 16px;
+    font-size: 1rem;
+    color: #e1ece3;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: inline-block;
+    margin: 10px;
+}
+
+
+.profile-card:hover {
+    background: #414141;
+    width: 300px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-name {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.song-section {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 10px;
+    transform: translateY(6px);
+}
+
+.song-cover {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.songInfoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: right;
+}
+
+.song-title {
+    font-size: 0.9rem;
+}
+
+.song-artist {
+    font-style: italic;
+    font-size: 0.8rem;
 }
