@@ -8,69 +8,54 @@
     <title>Music Share</title>
 </head>
 
-<!-- Navigation Bar -->
-<header class="navbar" id="navbar">
-    <div class="logo">MUSIC SHARE</div>
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <nav class="nav-buttons">
+        <a href="index.html" class="logo">LOGO</a>
+    </nav>
     <input type="text" class="search-bar" placeholder="Search here">
     <nav class="nav-buttons">
-        <a href="friends.html" class="nav-btn">Friends</a>
-        <a href="following.html" class="nav-btn">Following</a>
-        <a href="#" class="nav-btn sign-out">Sign Out</a>
-        <a href="#">
-            <img src="https://images.unsplash.com/photo-1487017931017-0e0d9e02bb0c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                class="pfp">
-        </a>
+      <a href="index.html" class="nav-btn">Home</a>
+      <a href="friends.html" class="nav-btn">Friends</a>
+      <a href="#" class="nav-btn sign-out">Sign Out</a>
     </nav>
-</header>
-
-<<<<<<< HEAD
-<!-- Profile Grid -->
-<main class="profile-grid" id="profileGrid">
-=======
+  </header>
   <!-- Page Heading -->
 <section class="page-heading">
-  <h1>Welcome To Sharify</h1>
-  <p>Here's some suggestions!</p>
+  <h1>Following</h1>
+  <p>Checkout who you're following, and what they're listening to!</p>
 </section>
 
 
   <!-- Profile Grid -->
   <main class="profile-grid" id="profileGrid">
->>>>>>> c2e2a65bbb2ca9a1ad45797b53e93215cb722b19
     <!-- Profiles will be generated dynamically by JS -->
-</main>
+  </main>
 
-<script src="profiles.js"></script> <!-- include profiles.js -->
+  <script src="profiles.js"></script> <!-- include profiles.js -->
 
 <script>
-    // ===== DYNAMIC PROFILES =====
-    const grid = document.getElementById("profileGrid");
+  // ===== DYNAMIC PROFILES =====
+  const grid = document.getElementById("profileGrid");
 
-    profiles.forEach(profile => {
-        const card = document.createElement("div");
-        card.className = "profile-card";
+  profiles.forEach(profile => {
+    const card = document.createElement("div");
+    card.className = "profile-card";
 
-        card.innerHTML = `
-        <div class="usersContainer">
+    card.innerHTML = `
       <div class="profile-header">
         <img src="${profile.picture}" alt="${profile.name}" class="profile-pic">
         <span class="profile-name">${profile.name}</span>
       </div>
       <div class="song-section">
-        <img src="${profile.songCover}" class="song-cover">
-        <div class="songInfoContainer">
-            <span class="song-title">${profile.song}</span>
-            <span class="song-artist">${profile.artist}</span>
-        </div>
-      </div>
+        <img src="${profile.songCover}" alt="${profile.song}" class="song-cover">
+        <span class="song-title">${profile.song}</span>
       </div>
     `;
 
-        grid.appendChild(card);
-    });
+    grid.appendChild(card);
+  });
 </script>
-<<<<<<< HEAD
-=======
 
 <style>
     .page-heading {
@@ -245,7 +230,9 @@
       background: #457e59;
     }
   </style>
->>>>>>> c2e2a65bbb2ca9a1ad45797b53e93215cb722b19
 </body>
+
+
+
 
 </html>
