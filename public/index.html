@@ -31,6 +31,25 @@
 
     window.onload = checkLoginState;
 
+    function getQueryParam(key) {
+        return new URLSearchParams(window.location.search).get(key);
+    }
+
+    const loggedIn = getQueryParam('loggedIn');
+    const accessToken = getQueryParam('access_token');
+
+    if (loggedIn || accessToken) {
+        localStorage.setItem('loggedIn', 'true');
+
+        if (accessToken) {
+            localStorage.setItem('access_token', accessToken);
+        }
+
+        checkLoginState();
+
+        window.history.replaceState({}, document.title, '/');
+    } F
+
 </script>
 
 <body>
