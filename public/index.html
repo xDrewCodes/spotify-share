@@ -14,7 +14,11 @@
     <nav class="nav-buttons">
         <a href="friends.html" class="nav-btn">Friends</a>
         <a href="following.html" class="nav-btn">Following</a>
-        <a href="#" class="nav-btn sign-out">Sign Out</a>
+        <a
+        href="#"
+        class="nav-btn sign-out"
+        onClick="logOut()"
+        >Sign Out</a>
         <a href="#">
             <img src="https://images.unsplash.com/photo-1487017931017-0e0d9e02bb0c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 class="pfp">
@@ -71,12 +75,12 @@
                 el.style.visibility = 'hidden';
             }
             for (let el of mainPageEls) {
-                el.style.visibility = 'shown';
+                el.style.visibility = 'visible';
             }
         } else {
             // Show login, hide main page
             for (let el of mainLoginEls) {
-                el.style.visibility = 'shown';
+                el.style.visibility = 'visible';
             }
             for (let el of mainPageEls) {
                 el.style.visibility = 'hidden';
