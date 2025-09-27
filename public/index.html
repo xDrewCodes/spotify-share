@@ -7,45 +7,7 @@
     <title>Sharify</title>
 </head>
 
-<!-- Navigation Bar -->
-<header class="navbar mainPage" id="navbar">
-    <div class="logo">Sharify</div>
-    <input type="text" class="search-bar" placeholder="Search here">
-    <nav class="nav-buttons">
-        <a href="friends.html" class="nav-btn">Friends</a>
-        <a href="following.html" class="nav-btn">Following</a>
-        <a
-        href="#"
-        class="nav-btn sign-out"
-        onClick="logOut()"
-        >Sign Out</a>
-        <a href="#">
-            <img src="https://images.unsplash.com/photo-1487017931017-0e0d9e02bb0c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                class="pfp">
-        </a>
-    </nav>
-</header>
-
-<!-- Page Heading -->
-<section class="mainPage page-heading">
-    <h1>Welcome To Sharify</h1>
-    <p>Here's some suggestions!</p>
-</section>
-
-
-<body>
-    <div class="mainLogin">
-        <h1>Sharify</h1>
-        <a class="button loginButton" href="/api/login">Authorize your Spotify account</a>
-        <a class="button loginButton loginSecondaryButton" onClick="logIn()">Log In</a>
-    </div>
-</body>
-
-<!-- Profile Grid -->
-<main class="mainPage profile-grid" id="profileGrid">
-
-    <!-- Profiles will be generated dynamically by JS -->
-</main>
+<body></body>
 
 <script src="profiles.js"></script> <!-- include profiles.js -->
 
@@ -66,25 +28,43 @@
     function checkLoginState() {
         const loggedIn = localStorage.getItem('loggedIn') === 'true';
 
-        const mainLoginEls = document.getElementsByClassName('mainLogin');
-        const mainPageEls = document.getElementsByClassName('mainPage');
-
         if (loggedIn) {
-            // Hide login, show main page
-            for (let el of mainLoginEls) {
-                el.style.visibility = 'hidden';
-            }
-            for (let el of mainPageEls) {
-                el.style.visibility = 'visible';
-            }
+            document.getElementsByTagName('body')[0].innerHTML = `
+            
+            <!-- Navigation Bar -->
+            <header class="navbar mainPage" id="navbar">
+                <div class="logo">Sharify</div>
+                <input type="text" class="search-bar" placeholder="Search here">
+                <nav class="nav-buttons">
+                    <a href="friends.html" class="nav-btn">Friends</a>
+                    <a href="following.html" class="nav-btn">Following</a>
+                    <a href="#" class="nav-btn sign-out" onClick="logOut()">Sign Out</a>
+                    <a href="#">
+                        <img src="https://images.unsplash.com/photo-1487017931017-0e0d9e02bb0c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            class="pfp">
+                    </a>
+                </nav>
+            </header>
+
+            <section class="mainPage page-heading">
+                <h1>Welcome To Sharify</h1>
+                <p>Here's some suggestions!</p>
+            </section>
+
+            <main class="mainPage profile-grid" id="profileGrid"></main>
+
+            `
+
         } else {
-            // Show login, hide main page
-            for (let el of mainLoginEls) {
-                el.style.visibility = 'visible';
-            }
-            for (let el of mainPageEls) {
-                el.style.visibility = 'hidden';
-            }
+            document.getElementsByTagName('body')[0].innerHTML = `
+            
+            <div class="mainLogin">
+                <h1>Sharify</h1>
+                <a class="button loginButton" href="/api/login">Authorize your Spotify account</a>
+                <a class="button loginButton loginSecondaryButton" onClick="logIn()">Log In</a>
+            </div>
+
+            `
         }
     }
 
