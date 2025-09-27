@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <link rel="stylesheet" href="/home.css">
-    <meta charset="UTF-8">
-    <title>Sharify</title>
-</head>
-
 <script src="profiles.js"></script> <!-- include profiles.js -->
 
 <script>
@@ -28,6 +22,12 @@
 
         if (loggedIn) {
             document.getElementsByTagName('html')[0].innerHTML = `
+
+            <head>
+                <link rel="stylesheet" href="/home.css">
+                <meta charset="UTF-8">
+                <title>Sharify</title>
+            </head>
 
             <!-- Navigation Bar -->
             <header class="navbar mainPage" id="navbar">
@@ -56,6 +56,12 @@
 
         } else {
             document.getElementsByTagName('html')[0].innerHTML = `
+
+            <head>
+                <link rel="stylesheet" href="/home.css">
+                <meta charset="UTF-8">
+                <title>Sharify</title>
+            </head>
 
             <body>
                 <div class="mainLogin">
