@@ -18,18 +18,8 @@
 
 
     function checkLoginState() {
-        
-        const logged = localStorage.getItem('loggedIn')
 
-        let loggedIn
-
-        if ( logged == 'true') {
-            loggedIn = true
-        } else {
-            loggedIn = false
-        }
-
-        console.log(logged)
+        const loggedIn = localStorage.getItem('loggedIn') === 'true';
 
         const fileToLoad = loggedIn ? "main.html" : "login.html";
 
