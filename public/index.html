@@ -22,6 +22,8 @@
 
         const fileToLoad = isLogged ? "main.html" : "login.html";
 
+        console.log(fileToLoad)
+
         fetch(fileToLoad)
             .then(res => res.text())
             .then(html => {
