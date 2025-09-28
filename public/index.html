@@ -18,7 +18,7 @@
 
 
     function checkLoginState() {
-        const loggedIn = localStorage.getItem('loggedIn');
+        const loggedIn = localStorage.getItem('loggedIn') === 'true';
         
         console.log(loggedIn)
 
