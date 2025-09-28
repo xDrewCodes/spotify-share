@@ -23,13 +23,13 @@
 
         let loggedIn
 
-        if ( logged ) {
+        if ( logged == 'true') {
             loggedIn = true
         } else {
             loggedIn = false
         }
 
-        console.log(loggedIn)
+        console.log(logged)
 
         const fileToLoad = loggedIn ? "main.html" : "login.html";
 
