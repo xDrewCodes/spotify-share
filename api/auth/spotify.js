@@ -83,7 +83,7 @@ module.exports = async function handler(req, res) {
     const firebaseToken = await admin.auth().createCustomToken(uid);
 
     // 5. Redirect to frontend callback page
-    const redirectUrl = `/spotify-callback?firebaseToken=${firebaseToken}`;
+    const redirectUrl = `/spotify-callback.html?firebaseToken=${firebaseToken}`;
     return res.redirect(302, redirectUrl);
 
   } catch (err) {
