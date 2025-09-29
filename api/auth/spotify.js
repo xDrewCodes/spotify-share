@@ -22,6 +22,7 @@ export default async function handler(req, res) {
     return res.status(400).send("Missing code or state");
   }
 
+  
   try {
     // 1. Exchange code for access token
     const authHeader = Buffer.from(`${client_id}:${client_secret}`).toString("base64");
