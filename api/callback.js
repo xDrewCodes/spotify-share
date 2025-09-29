@@ -80,6 +80,7 @@ export default async function handler(req, res) {
     const firebaseToken = await admin.auth().createCustomToken(uid);
 
     // Send it back to client (front-end can use signInWithCustomToken)
+
     return res.json({ firebaseToken, access_token, refresh_token });
 
   } catch (error) {
