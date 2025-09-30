@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background-color: #232723;">
 
-<script src="profiles.js"></script> <!-- include profiles.js -->
+<script src="profiles.js"></script>
+<script src="firebaseClient.js"></script>
+
 
 <script>
 
     function logIn() {
         localStorage.setItem('loggedIn', true)
-        checkLoginState()
+        checkLoginState();
     }
 
     function logOut() {

@@ -22,13 +22,11 @@
     </nav>
 </header>
 
-<script src="firebaseClient.js"></script>
-
 <script>
 
     import { getAuth, onAuthStateChanged } from firebase/auth
 
-    const pfpImg = document.getElementsByClassName('pfp')[0]
+    let pfpImg = document.getElementsByClassName('pfp')[0]
     const auth = getAuth(app)
 
     const user = auth.currentUser
