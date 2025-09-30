@@ -1,0 +1,12 @@
+{
+    "rewrites": [
+        {
+            "source": "/friends",
+            "destination": "/friends.html"
+        },
+        {
+            "source": "/following",
+            "destination": "/following.html"
+        }
+    ]
+}
