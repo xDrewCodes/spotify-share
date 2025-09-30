@@ -1,38 +1,29 @@
-const admin = require("firebase-admin");
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
+import admin from "firebase-admin";
+
+// Only initialize admin once
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY)),
+  });
+}
 
 const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 const redirect_uri = process.env.SPOTIFY_REDIRECT_URI;
 
-// Initialize Firebase Admin
-let serviceAccount;
-try {
-  serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
-} catch (err) {
-  console.error("Invalid or missing FIREBASE_SERVICE_ACCOUNT_KEY", err);
-  throw err;
-}
-
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-  });
-}
-
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   const code = req.query.code || null;
-  const state = req.query.state || null;
 
-  if (!code || !state) {
-    return res.status(400).send("Missing code or state");
+  if (!code) {
+    return res.status(400).send("Missing Spotify code");
   }
 
   try {
-    // 1. Exchange Spotify code for tokens
+    // Step 1: exchange code for tokens
     const authHeader = Buffer.from(`${client_id}:${client_secret}`).toString("base64");
 
-    const tokenRes = await fetch("https://accounts.spotify.com/api/token", {
+    const tokenResponse = await fetch("https://accounts.spotify.com/api/token", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -45,32 +36,36 @@ module.exports = async function handler(req, res) {
       }).toString(),
     });
 
-    if (!tokenRes.ok) {
-      const errData = await tokenRes.json();
-      console.error("Spotify token exchange failed:", errData);
-      return res.status(500).json({ error: "Token exchange failed", details: errData });
+    if (!tokenResponse.ok) {
+      const errorData = await tokenResponse.json();
+      console.error("Spotify token exchange failed:", errorData);
+      return res.status(500).json({ error: "Token exchange failed", details: errorData });
     }
 
-    const { access_token, refresh_token } = await tokenRes.json();
+    const { access_token } = await tokenResponse.json();
 
-    // 2. Get Spotify profile
-    const profileRes = await fetch("https://api.spotify.com/v1/me", {
+    // Step 2: get Spotify profile
+    const profileResponse = await fetch("https://api.spotify.com/v1/me", {
       headers: { Authorization: `Bearer ${access_token}` },
     });
-    const profile = await profileRes.json();
 
+    if (!profileResponse.ok) {
+      return res.status(500).json({ error: "Failed to fetch Spotify profile" });
+    }
+
+    const profile = await profileResponse.json();
+
+    // Step 3: Create/update Firebase user (uid = spotify:profile.id)
     const uid = `spotify:${profile.id}`;
-
-    // 3. Create/update Firebase user
     await admin.auth().updateUser(uid, {
-      displayName: profile.display_name,
+      displayName: profile.display_name || "Spotify User",
       email: profile.email || undefined,
       photoURL: profile.images?.[0]?.url || undefined,
     }).catch(async (err) => {
       if (err.code === "auth/user-not-found") {
         await admin.auth().createUser({
           uid,
-          displayName: profile.display_name,
+          displayName: profile.display_name || "Spotify User",
           email: profile.email || undefined,
           photoURL: profile.images?.[0]?.url || undefined,
         });
@@ -79,15 +74,14 @@ module.exports = async function handler(req, res) {
       }
     });
 
-    // 4. Create Firebase custom token
+    // Step 4: Generate Firebase custom token
     const firebaseToken = await admin.auth().createCustomToken(uid);
 
-    // 5. Redirect to frontend callback page
-    const redirectUrl = `/spotify-callback.html?firebaseToken=${firebaseToken}`;
-    return res.redirect(302, redirectUrl);
+    // Step 5: Redirect to our dynamic frontend callback
+    return res.redirect(302, `/api/spotify-callback?firebaseToken=${firebaseToken}`);
 
-  } catch (err) {
-    console.error("Unexpected error in Spotify callback:", err);
+  } catch (error) {
+    console.error("Unexpected error:", error);
     return res.status(500).json({ error: "Internal Server Error" });
   }
-};
+}
